@@ -1,0 +1,91 @@
+<div class="ro">
+    <div class="col-sm-4">
+        <header>
+            Followers List
+        </header>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                        Followers Image
+                    </th>
+                    <th>
+                        Followers Name
+                    </th>
+                </tr>
+                <tbody>
+                    <tr ng-repeat="follower in $ctrl.followers.data">
+                        <td>
+                            <input type="checkbox" ng-model="follower.checked" ng-click="$ctrl.isSelected(follower)" />
+                        </td>
+                        <td>
+                            <img src='{{follower.profile_image}}' />
+                        </td>
+                        <td>
+                            {{follower.name}}
+                        </td>
+                    </tr>
+                </tbody>
+            </thead>
+        </table>
+    </div>
+    <div class="col-sm-4">
+        <header>
+            Send Direct Message
+        </header>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Followers Name
+                    </th>
+                    <th>
+                        Followers Image
+                    </th>
+                    <th>
+                        Delete
+                    </th>
+                </tr>
+                <tbody>
+                    <tr ng-repeat="follower in $ctrl.selectedFollowers.data">
+                        <td>
+                            <img src='{{follower.profile_image}}' />
+                        </td>
+                        <td>
+                            {{follower.name}}
+                        </td>
+                        <td>
+                            <a href="#" ng-click="$ctrl.removeItem($event,$index)"><span class="glyphicon glyphicon-remove"></span></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </thead>
+        </table>
+    </div>
+    <div class="col-sm-4">
+        <header>
+            <h3>
+                Post message or send direct message!!
+            </h3>
+        </header>
+        <div class="form-group">
+            <label for="dm" class="radio-inline"><input type="radio" name="optradio" value="directmessage" 
+            ng-model="$ctrl.message.messageType" name="dm"/>Direct Message</label>
+        </div>
+        <div class="form-group">
+            <label for="dmcomment">Comment</label>
+            <textarea class="form-control" rows="5" id="dmcomment" ng-model="$ctrl.message.messageDM" ></textarea>
+        </div>
+        <div class="form-group">
+            <label for="twt" class="radio-inline"><input type="radio" name="optradio" value="tweet" 
+            ng-model="$ctrl.message.messageType" name="twt"/>Post Message</label>
+        </div>
+        <div class="form-group">
+            <label for="twtcomment">Comment</label>
+            <textarea class="form-control" rows="5" id="twtcomment" ng-model="$ctrl.message.messageTweet" ></textarea>
+        </div>
+        <button class="btn btn-info" type="button" ng-click="$ctrl.postMessage($event)">Post</button>
+    </div>
+</div>
